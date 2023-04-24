@@ -280,7 +280,7 @@ class ImageEnv(gym.Env):
             bag.close()
 
     def reset(self, fall=0, **kwargs):
-
+        print("in customed reset")
         self._reset_req()
         # call ros reset service
         try:
