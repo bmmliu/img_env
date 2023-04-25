@@ -32,7 +32,7 @@ if __name__ == "__main__":
     # time.sleep(1)
     random_policy = RandomPolicy4Nav(env.robot_total)
     # test continuous action
-    for i in range(100):
+    for i in range(1):
         print(11111111111111111,flush=True)
         env.reset()
         # test here commit
