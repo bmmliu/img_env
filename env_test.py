@@ -35,6 +35,7 @@ if __name__ == "__main__":
     for i in range(100):
         print(11111111111111111,flush=True)
         env.reset()
+        # test here commit
         print(22222222222222222,flush=True)
         # env2.reset()
         while 1:
