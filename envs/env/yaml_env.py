@@ -354,7 +354,25 @@ class ImageEnv(gym.Env):
             return False
         state = self._get_states(step_res.robot_states)
         # 1 arrive, -1 coll, 0 otherwise.
-        rewards = state.is_arrives - state.is_collisions
+
+        d = math.sqrt(state.vector_states[0][0] ** 2 + state.vector_states[0][1] ** 2)
+
+        collision_reward = reach_reward = step_reward = distance_reward = 0
+        if state.ped_min_dists[0] <= 1:
+            collision_reward = -50 * (1 - state.ped_min_dists[0])
+        if state.is_collisions > 0:
+            collision_reward = -500
+        else:
+            d = math.sqrt(state.vector_states[0][0] ** 2 + state.vector_states[0][1] ** 2)
+            # print 'robot ',i," dist to goal: ", d
+            if d < 0.3 or state.is_arrives:
+                reach_reward = 500.0
+            else:
+                distance_reward = 200 * state.step_ds[0]
+                step_reward = -5
+
+        rewards = collision_reward + reach_reward + step_reward + distance_reward
+
         self.dones = np.clip(state.is_collisions, -1, 1) + state.is_arrives
         # sometimes a robot will be in reach and collision at the same time, so dones may be more than 1. need clip.
         self.dones = np.clip(self.dones, 0, 1)

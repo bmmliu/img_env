@@ -351,7 +351,7 @@ bool ImgEnv::_step(comn_pkg::StepEnv::Request &req, comn_pkg::StepEnv::Response 
         robots_[i].get_corners(pax, pay, pbx, pby);
         // 对行人来说 机器人也是障碍物
         if(relation_ped_robo == 1)
-            pedscene->setRobotPos(i, pax, pay, pbx, pby, robot_msg.init_pose.position.x, robot_msg.init_pose.position.y,
+            pedscene->setRobotPos(i, pax, pay, pbx, pby, pbx, pby,
             robots_[i].vx, robots_[i].vy);
     }
     step_ += 1;
