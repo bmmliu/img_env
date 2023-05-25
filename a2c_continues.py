@@ -23,7 +23,6 @@ import torch.nn.functional as F
 
 import openai
 
-openai.api_key = "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"
 HID_SIZE = 128
 GAMMA = 0.99
 REWARD_STEPS = 2

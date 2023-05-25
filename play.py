@@ -8,8 +8,6 @@ import numpy as np
 import torch
 import openai
 
-openai.api_key = "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"
-
 
 
 
